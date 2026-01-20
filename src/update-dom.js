@@ -1,5 +1,5 @@
 import { projectList } from "./project-functions";
-import {toDoList} from "./todo-functions";
+import {toDoList, todoManager} from "./todo-functions";
 
 const updateDom = (() => {
     const mainUl = document.querySelector("ul");
@@ -8,19 +8,19 @@ const updateDom = (() => {
         mainUl.textContent="";
         toDoList.forEach((item) => {
             const newLi = document.createElement("li");
-            newLi.setAttribute("toDoId",newToDo.id);
+            newLi.setAttribute("todoid",newToDo.id);
             newLi.textContent = item.title;
             mainUl.appendChild(newLi);
         })
     }
     function addNewDiv(newToDo) {
         const newLi = document.createElement("li");
-        newLi.setAttribute("toDoId",newToDo.id);
+        newLi.setAttribute("todoid",newToDo.id);
 
         const statusBtn = document.createElement("button");
         statusBtn.classList.add("statusBtn");
         statusBtn.addEventListener("click", (e) => {
-            updateDom.updateDiv()
+            todoManager.toggleComplete(newToDo.id)
         });
 
         const newP = document.createElement("p");
@@ -41,9 +41,8 @@ const updateDom = (() => {
     }
 
     function removeDiv(id) {
-        const divToDelete = document.querySelector(`[todoid=${id}]`);
+        const divToDelete = document.querySelector(`[todoid="${id}"]`);
         divToDelete.remove();
-        console.log(divToDelete);
     }
 
     function buildProjectList() {

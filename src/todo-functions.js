@@ -24,23 +24,26 @@ const todoManager = (() => {
         const newToDo = new Todo(title, description, dueDate, priority, selectedProject, state);
         toDoList.push(newToDo);
         updateDom.addNewDiv(newToDo);
-
-        console.log(newToDo);
         return newToDo
     };
 
     function deleteTodo(id) {
-        const toDoId = id;
-        const index = toDoList.findIndex((item) => item.id === toDoId);
+        const todoid = id;
+        const index = toDoList.findIndex((item) => item.id === todoid);
         toDoList.splice(index,1);
-        updateDom.removeDiv(toDoId)
+        updateDom.removeDiv(todoid)
     }
 
     function toggleComplete(id) {
-
+        const toDoItem = toDoList.find((item) => item.id === id);
+        if (toDoItem.state !== "complete") {
+            toDoItem.state = "complete"
+        } else {
+            toDoItem.state = "open"
+        }
     }
 
-    return { addTodo, deleteTodo }
+    return { addTodo, deleteTodo, toggleComplete}
 })();
 
 export {todoManager, toDoList, projectManager};
