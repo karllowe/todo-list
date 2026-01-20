@@ -1,10 +1,22 @@
 :root {
-    background-color: aliceblue;
+}
+
+#toolBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.projectDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .newTaskDiv {
     display: flex;
-    justify-content: end;
+    justify-content:space-between;
     gap: 10px;
     align-items: center;
 }
@@ -14,6 +26,9 @@
     flex-direction: column;
     justify-content: start;
     align-items: stretch;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    
 }
 
 .toDoList li {
@@ -21,4 +36,9 @@
     justify-content: space-between;
     align-items: center;
     background-color: lightgray;
+    padding: 6px 12px;
+    margin: 6px 0;
+    border-radius: 5px;
+    height: 32px
+
 }

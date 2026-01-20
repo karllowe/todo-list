@@ -1,12 +1,11 @@
-import { defaultProject } from "./project-functions";
-
+import { projectList } from "./project-functions";
 
 const updateDom = (() => {
     const mainUl = document.querySelector("ul");
 
     function rebuildDom() {
         mainUl.textContent="";
-        defaultProject.forEach((item) => {
+        projectList.forEach((item) => {
             const newLi = document.createElement("li");
             newLi.setAttribute("toDoId",newToDo.id);
             newLi.textContent = item.title;
@@ -37,9 +36,19 @@ const updateDom = (() => {
         const divToDelete = document.querySelector(`[todoid=${id}]`);
         divToDelete.remove();
         console.log(divToDelete);
-
     }
-    return {rebuildDom, addNewDiv, removeDiv}
+
+    function buildProjectList() {
+        const selectElement = document.querySelector("#projectSelect");
+        projectList.forEach((project) => {
+            const option = document.createElement("option");
+            option.value=project.name;
+            option.textContent=project.name;
+
+            selectElement.appendChild(option)
+        })
+    }
+    return {rebuildDom, addNewDiv, removeDiv, buildProjectList}
 })();
 
 export {updateDom}
