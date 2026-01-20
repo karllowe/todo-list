@@ -1,11 +1,12 @@
 import { projectList } from "./project-functions";
+import {toDoList} from "./todo-functions";
 
 const updateDom = (() => {
     const mainUl = document.querySelector("ul");
 
     function rebuildDom() {
         mainUl.textContent="";
-        projectList.forEach((item) => {
+        toDoList.forEach((item) => {
             const newLi = document.createElement("li");
             newLi.setAttribute("toDoId",newToDo.id);
             newLi.textContent = item.title;
@@ -15,6 +16,12 @@ const updateDom = (() => {
     function addNewDiv(newToDo) {
         const newLi = document.createElement("li");
         newLi.setAttribute("toDoId",newToDo.id);
+
+        const statusBtn = document.createElement("button");
+        statusBtn.classList.add("statusBtn");
+        statusBtn.addEventListener("click", (e) => {
+            updateDom.updateDiv()
+        });
 
         const newP = document.createElement("p");
         newP.textContent=newToDo.title;
@@ -26,6 +33,7 @@ const updateDom = (() => {
             updateDom.removeDiv(e.target.parentNode.attributes.todoid.nodeValue)        
         });
 
+        newLi.appendChild(statusBtn);
         newLi.appendChild(newP);
         newLi.appendChild(deleteBtn);
 
@@ -40,6 +48,7 @@ const updateDom = (() => {
 
     function buildProjectList() {
         const selectElement = document.querySelector("#projectSelect");
+        selectElement.textContent="";
         projectList.forEach((project) => {
             const option = document.createElement("option");
             option.value=project.name;
@@ -48,7 +57,12 @@ const updateDom = (() => {
             selectElement.appendChild(option)
         })
     }
-    return {rebuildDom, addNewDiv, removeDiv, buildProjectList}
+
+    function updateDiv() {
+
+    }
+
+    return {rebuildDom, addNewDiv, removeDiv, buildProjectList, updateDiv}
 })();
 
 export {updateDom}

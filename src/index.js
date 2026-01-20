@@ -1,8 +1,8 @@
 import "./styles.css";
-import { todoManager} from "./todo-functions.js";
-import { updateDom } from "./update-dom.js";
+import { todoManager, projectManager} from "./todo-functions.js";
 
-updateDom.buildProjectList();
+
+projectManager.addNewProject("Default");
 
 const newActionBtn = document.querySelector("#createNew");
 newActionBtn.addEventListener("click", (e) => {
@@ -10,3 +10,23 @@ newActionBtn.addEventListener("click", (e) => {
     todoManager.addTodo(inputElement.value);
     inputElement.value=""
 });
+
+const showNewProjectBtn= document.querySelector("#showNewProjectModal");
+const modal = document.querySelector("#newProjectModal");
+
+showNewProjectBtn.addEventListener("click", () => {
+    modal.showModal()
+});
+
+const closeNewProjectModalBtn = document.querySelector("#newProjectModal .close");
+closeNewProjectModalBtn.addEventListener("click", () => {
+    modal.close()
+});
+
+const createNewProjectBtn = document.querySelector("#addNewProject");
+createNewProjectBtn.addEventListener("click", () => {
+    const input = document.querySelector("dialog input")
+    projectManager.addNewProject(input.value);
+    input.value="";
+    modal.close()
+})

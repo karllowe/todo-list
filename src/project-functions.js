@@ -1,3 +1,5 @@
+import { updateDom } from "./update-dom";
+
 const projectList = [];
 
 class project {
@@ -7,7 +9,18 @@ class project {
     }
 }
 
-const defaultProject = new project("Default");
-projectList.push(defaultProject);
+const projectManager = (() => {
+    function addNewProject(name) {
+        const newProject = new project(name);
+        projectList.push(newProject);
+        updateDom.buildProjectList();
+        
+        return newProject
+    }
 
-export {projectList}
+    return {addNewProject}
+})();
+
+
+
+export {projectList, projectManager}
