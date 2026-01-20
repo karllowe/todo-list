@@ -6,6 +6,27 @@
     <title>Todo list</title>
 </head>
 <body>
-    <h1>test!</h1>
+    <h1>Karl's todo app!</h1>
+    <div id="toolBar">
+        <div class="projectDiv">
+            <h3>Project:</h3>
+            <select name="project" id="projectSelect"></select>
+            <button id="showNewProjectModal">+</button>
+            <dialog id="newProjectModal">
+                <button class="close">x</button>
+                <h3>Add new project</h3>
+                <div>
+                    <input type="text" id="newProjectName">
+                    <button id="addNewProject">Add</button>
+                </div>
+            </dialog>
+        </div>
+        <div class="newTaskDiv">
+            <input id="newTaskTitle" type="text">
+            <button id="createNew">Add</button>
+        </div>
+    </div>
+    <ul class="toDoList">
+    </ul>
 </body>
 </html>

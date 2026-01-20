@@ -1,4 +1,8 @@
-const defaultProject = [];
+// const defaultProject = [];
+import { projectList, projectManager } from "./project-functions";
+import { updateDom, buildProjectList } from "./update-dom.js";
+
+const toDoList = [];
 
 class Todo {
     constructor(title, description, dueDate, priority, project, state){
@@ -14,19 +18,29 @@ class Todo {
 
 const todoManager = (() => {
     function addTodo(title, description, dueDate, priority, project, state) {
-        const newToDo = new Todo(title, description, dueDate, priority, project, state);
-        defaultProject.push(newToDo);
+        const selectionIndex = document.querySelector("#projectSelect").options.selectedIndex;
+        const selectedProject = projectList[selectionIndex];
 
+        const newToDo = new Todo(title, description, dueDate, priority, selectedProject, state);
+        toDoList.push(newToDo);
+        updateDom.addNewDiv(newToDo);
+
+        console.log(newToDo);
         return newToDo
     };
 
     function deleteTodo(id) {
         const toDoId = id;
-        const index = defaultProject.findIndex((item) => item.id === toDoId);
-        defaultProject.splice(index,1)
+        const index = toDoList.findIndex((item) => item.id === toDoId);
+        toDoList.splice(index,1);
+        updateDom.removeDiv(toDoId)
+    }
+
+    function toggleComplete(id) {
+
     }
 
     return { addTodo, deleteTodo }
 })();
 
-export {defaultProject, todoManager};
+export {todoManager, toDoList, projectManager};

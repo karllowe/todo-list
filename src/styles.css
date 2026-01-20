@@ -1,3 +1,70 @@
-:root {
-    background-color: aliceblue;
+:root{
+    --row-height: 32px;
+}
+
+
+#toolBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.projectDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.newTaskDiv {
+    display: flex;
+    justify-content:space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.toDoList{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    
+}
+
+.toDoList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgray;
+    padding: 6px 12px;
+    margin: 6px 0;
+    border-radius: 5px;
+    height: var(--row-height);
+    gap:24px;
+
+}
+
+.toDoList li .statusBtn {
+    --height: calc(var(--row-height)*0.8);
+    height: var(--height);
+    width: var(--height);
+    border-radius: 50%;
+}
+.toDoList li p {
+    margin-right: auto;
+}
+
+#newProjectModal:open {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+#newProjectModal button {
+    width: 40px;
+    align-self: end;
 }
