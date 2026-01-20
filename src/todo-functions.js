@@ -1,5 +1,6 @@
 // const defaultProject = [];
 import { defaultProject } from "./project-functions";
+import { updateDom } from "./update-dom.js";
 
 class Todo {
     constructor(title, description, dueDate, priority, project, state){
@@ -17,14 +18,15 @@ const todoManager = (() => {
     function addTodo(title, description, dueDate, priority, project, state) {
         const newToDo = new Todo(title, description, dueDate, priority, project, state);
         defaultProject.push(newToDo);
-
+        updateDom.addNewDiv(newToDo);
         return newToDo
     };
 
     function deleteTodo(id) {
         const toDoId = id;
         const index = defaultProject.findIndex((item) => item.id === toDoId);
-        defaultProject.splice(index,1)
+        defaultProject.splice(index,1);
+        updateDom.removeDiv(toDoId)
     }
 
     return { addTodo, deleteTodo }
