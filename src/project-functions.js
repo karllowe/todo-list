@@ -1,0 +1,3 @@
+const defaultProject = [];
+
+export {defaultProject}

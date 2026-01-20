@@ -1,2 +1,3 @@
 import "./styles.css";
-import {defaultProject, todoManager} from "./todo-functions.js";
+import { todoManager} from "./todo-functions.js";
+import {updateDom} from "./update-dom.js";

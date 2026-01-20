@@ -1,4 +1,5 @@
-const defaultProject = [];
+// const defaultProject = [];
+import { defaultProject } from "./project-functions";
 
 class Todo {
     constructor(title, description, dueDate, priority, project, state){
