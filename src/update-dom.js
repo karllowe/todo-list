@@ -16,16 +16,41 @@ const updateDom = (() => {
     function addNewDiv(newToDo) {
         const newLi = document.createElement("li");
         newLi.setAttribute("todoid",newToDo.id);
+        newLi.classList.add("open");
+        console.log(newLi.status);
+
+        // status button
+        const statusDiv = document.createElement("div");
+        statusDiv.classList.add("statusDiv");
 
         const statusBtn = document.createElement("button");
         statusBtn.classList.add("statusBtn");
-        statusBtn.addEventListener("click", (e) => {
-            todoManager.toggleComplete(newToDo.id)
+        statusDiv.addEventListener("click", (e) => {
+            todoManager.toggleComplete(newToDo.id);
         });
 
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.classList.add("statusIcon");
+        svg.setAttribute("height", "24px");
+        svg.setAttribute("width", "24px");
+        svg.setAttribute("viewBox", "0 -960 960 960");
+        svg.setAttribute("fill", "#e3e3e3");
+        const path = document.createElementNS(svgNS, "path");
+        path.setAttribute(
+            "d",
+            "M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"
+        );
+
+        svg.appendChild(path);
+
+        statusDiv.appendChild(svg);
+        statusDiv.appendChild(statusBtn);
+
+        // Title
         const newP = document.createElement("p");
         newP.textContent=newToDo.title;
-
+        // delete button
         const deleteBtn = document.createElement("button");
         deleteBtn.classList.add("delete");
         deleteBtn.textContent = "delete";
@@ -33,7 +58,7 @@ const updateDom = (() => {
             updateDom.removeDiv(e.target.parentNode.attributes.todoid.nodeValue)        
         });
 
-        newLi.appendChild(statusBtn);
+        newLi.appendChild(statusDiv);
         newLi.appendChild(newP);
         newLi.appendChild(deleteBtn);
 
@@ -57,11 +82,19 @@ const updateDom = (() => {
         })
     }
 
-    function updateDiv() {
+    function updateDone(id, status) {
+        const divToUpdate = document.querySelector(`[todoid="${id}"]`);
+        if (status === "complete" || status == undefined) {
+            divToUpdate.classList.remove("open");
+            divToUpdate.classList.add("complete")
+        } else {
+            divToUpdate.classList.remove("complete");
+            divToUpdate.classList.add("open")
+        }
 
     }
 
-    return {rebuildDom, addNewDiv, removeDiv, buildProjectList, updateDiv}
+    return {rebuildDom, addNewDiv, removeDiv, buildProjectList, updateDone}
 })();
 
 export {updateDom}

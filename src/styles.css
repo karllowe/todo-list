@@ -68,3 +68,30 @@
     width: 40px;
     align-self: end;
 }
+
+.statusDiv {
+    display: block;
+    position: relative;
+
+}
+
+.statusIcon {
+    fill: green;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.toDoList li.open .statusIcon {
+    visibility: hidden;
+}
+.toDoList li.closed .statusIcon {
+    visibility:visible;
+}
+
+
+.statusBtn {
+    z-index: 1;
+}

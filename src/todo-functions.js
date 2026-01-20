@@ -36,11 +36,13 @@ const todoManager = (() => {
 
     function toggleComplete(id) {
         const toDoItem = toDoList.find((item) => item.id === id);
-        if (toDoItem.state !== "complete") {
-            toDoItem.state = "complete"
+        if (toDoItem.state !== "complete" || toDoItem.state === undefined) {
+            toDoItem.state = "complete";
+            updateDom.updateDone(id,"complete")
         } else {
-            toDoItem.state = "open"
-        }
+            toDoItem.state = "open";
+            updateDom.updateDone(id, "open")
+        };
     }
 
     return { addTodo, deleteTodo, toggleComplete}
