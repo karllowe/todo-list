@@ -30,8 +30,34 @@
     </ul>
     <dialog class="actionDetails">
         <div class="header">
-            <h3></h3>
+            <h3>Action details:</h3>
+            <button class="close">X</button>
         </div>
+        <form action="">
+            <div class="title">
+                <label for = "actionName">Title:</label>
+                <input type = "text" name="action_title" id="actionName">
+                <label for = "state">State:</label>
+                <select name="state" id="state">
+                    <option value="Open" selected>Open</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+            <div class = "row">
+                <label for = "dueDate">Due date:</label>
+                <input type = "date" name_due_date id = "dueDate">
+                <label for = "priority">Priority:</label>
+                <select name="priority" id="priority">
+                    <option value="low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            <div class ="row">
+                <label for = "description">Description:</label>
+                <textarea name="description" id="description"></textarea>
+            </div>
+        </form>
     </dialog>
 </body>
 </html>
